@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Getting Started</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="siteTitle">yle-areena-embed-code-generator</h1>
+
+      <!-- Enable js alert -->
+      <noscript>
+        <div class="alert alert-danger">
+          <strong>Otathan JavaScriptin käyttöön selaimessasi käyttääksesi tätä palvelua.</strong><br>
+          <a href="https://theel0ja.github.io/enable-js/?hl=fi&amp;utm_source=noscript-alert&amp;utm_medium=link&amp;utm_campaign=yle-areena-embed-code-generator"
+            class="alert-link">Katso ohje</a>
+        </div>
+      </noscript>
+
+      <h3>Konfiguraatio</h3>
+      <form id="configurationForm" action="">
+        Videon ID: <input type="text" id="videoIdBox" required value="1-4215533"><!-- FIXME: value is just for dev -->
+
+        <input type="submit" value="Luo koodi" />
+      </form>
+
+      <h4>Mistä löydän videon IDn?</h4>
+      <img src="https://raw.githubusercontent.com/theel0ja/yle-areena-embed/master/meta/1.png" style="width: 613px; height: 317px;">
+
+      <div id="showAfterConfigurationSubmit">
+        <h3>Koodi</h3>
+        <pre><code class="html" id="codeElement"></code></pre>
+
+        <h3>Esikatselu</h3>
+        <div id="previewElement"></div>
+      </div>
+    </div>
+
+    <noscript>
+      <style>
+        #showAfterConfigurationSubmit {
+          visibility: hidden;
+        }
+      </style>
+    </noscript>
+
+    <!-- JS -->
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.slim.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.12.0/styles/github.css">
+    <script src="https://unpkg.com/highlight.js@9.12.0/lib/highlight.js"></script>
+
+    <script src="https://theel0ja.github.io/theel0ja-js/dist/index.js"></script>
+
+    <script>
+      $("#showAfterConfigurationSubmit").hide();
+      
+      // If hide_title query parameter is "yes", hide #siteTitle
+      if(theel0ja.getParameterByName("hide_title") == "yes") {
+        $("h1#siteTitle").hide();
+      }
+
+      $("form#configurationForm").submit(function(event) {
+        function getElement(videoId) {
+          var element = document.createElement('iframe');
+          
+          element.src             = "https://theel0ja.github.io/yle-areena-embed/index.html?id=" + videoId;
+          element.width           = "640px";
+          element.height          = "360px";
+          element.frameBorder     = "0";
+          element.style.overflow  = "hidden";
+          element.allowFullscreen = "yes"; // It prints "", but "" in here doesn't work.
+
+          return element;
+        }
+
+        event.preventDefault();
+
+        var videoId = $("#videoIdBox").val();
+        var element = getElement(videoId);
+
+        // Show #showAfterConfigurationSubmit
+        $("#showAfterConfigurationSubmit").show();
+        // Empty #previewWindow and put element to it.
+        $("#previewElement").text("");
+        $("#previewElement").append( element );
+
+        // Insert element as HTML code to #codeWindow
+        $("#codeElement").text(element.outerHTML);
+        hljs.initHighlightingOnLoad();
+      });
+    </script>
+  </body>
+</html>
