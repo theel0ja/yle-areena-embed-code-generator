@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
+      <a href="https://github.com/theel0ja/yle-areena-embed-code-generator" id="githubForkMeRibbon">
+        <img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;"
+          src="https://aral.github.io/fork-me-on-github-retina-ribbons/right-green@2x.png"
+          alt="Fork me on GitHub">
+      </a>
+
     <div class="container">
       <h1 id="siteTitle">yle-areena-embed-code-generator</h1>
 
@@ -42,7 +48,7 @@
 
     <noscript>
       <style>
-        #showAfterConfigurationSubmit {
+        #showAfterConfigurationSubmit, #githubForkMeRibbon {
           visibility: hidden;
         }
       </style>
@@ -64,9 +70,10 @@
         $("h1#siteTitle").hide();
       }
       
-      // If pedanet_generator query parameter is "yes", TODO: do something 
+      // If pedanet_generator query parameter is "yes", hide #githubForkMeRibbon
       if(theel0ja.getParameterByName("pedanet_generator") == "yes") {
         console.log("pedanet_generator is yes, do something");
+        $("#githubForkMeRibbon").hide();
       }
 
       $("form#configurationForm").submit(function(event) {
