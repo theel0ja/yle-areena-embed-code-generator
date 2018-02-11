@@ -29,9 +29,12 @@
 
       <h3>Konfiguraatio</h3>
       <form id="configurationForm" action="">
-        Videon ID: <input type="text" id="videoIdBox" required placeholder="1-4215533">
+        <div class="form-group">
+          <label for="videoIdBox">Videon ID</label>
+          <input type="text" class="form-control" id="videoIdBox" required placeholder="1-4215533">
 
-        <input type="submit" value="Luo koodi" />
+          <button type="submit" class="btn btn-primary" style="margin-top: .5rem">Luo koodi</button>
+        </div>
       </form>
 
       <h4>Mistä löydän videon IDn?</h4>
@@ -88,6 +91,7 @@
           element.src             = "https://theel0ja.github.io/yle-areena-embed/index.html?id=" + videoId;
           element.width           = "640px";
           element.height          = "360px";
+          element.style.maxWidth  = "100%";
           element.frameBorder     = "0";
           element.style.overflow  = "hidden";
           element.allowFullscreen = "yes"; // It prints "", but "" in here doesn't work.
