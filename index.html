@@ -35,7 +35,10 @@
       </form>
 
       <h4>Mistä löydän videon IDn?</h4>
-      <img src="https://raw.githubusercontent.com/theel0ja/yle-areena-embed/master/meta/1.png" style="width: 613px; height: 317px;">
+      <a href="https://raw.githubusercontent.com/theel0ja/yle-areena-embed/master/meta/1.png">
+        <img class="img-thumbnail" style="padding: 0"
+          src="https://raw.githubusercontent.com/theel0ja/yle-areena-embed/master/meta/1.png">
+      </a>
 
       <div id="showAfterConfigurationSubmit">
         <h3>Koodi</h3>
@@ -75,6 +78,8 @@
         console.log("pedanet_generator is yes, do something");
         $("#githubForkMeRibbon").hide();
       }
+
+      // TODO: Hide 
 
       $("form#configurationForm").submit(function(event) {
         function getElement(videoId) {
