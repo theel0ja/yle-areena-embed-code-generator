@@ -63,37 +63,38 @@
     <!-- JS -->
     <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.slim.min.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.12.0/styles/github.css">
-    <script src="https://unpkg.com/highlight.js@9.12.0/lib/highlight.js"></script>
-
     <script src="https://theel0ja.github.io/theel0ja-js/dist/index.js"></script>
-
     <script>
       $("#showAfterConfigurationSubmit").hide();
-      
+
       // If hide_title query parameter is "yes", hide #siteTitle
-      if(theel0ja.getParameterByName("hide_title") == "yes") {
+      if (theel0ja.getParameterByName("hide_title") == "yes") {
         $("h1#siteTitle").hide();
       }
-      
+
       // If pedanet_generator query parameter is "yes", hide #githubForkMeRibbon
-      if(theel0ja.getParameterByName("pedanet_generator") == "yes") {
+      if (theel0ja.getParameterByName("pedanet_generator") == "yes") {
         console.log("pedanet_generator is yes, do something");
         $("#githubForkMeRibbon").hide();
       }
+    </script>
+    
 
-      // TODO: Hide 
+    <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.12.0/styles/github.css">
+    <script src="https://unpkg.com/highlight.js@9.12.0/lib/highlight.js"></script>
 
-      $("form#configurationForm").submit(function(event) {
+    <script>
+      // Form submit event
+      $("form#configurationForm").submit(function (event) {
         function getElement(videoId) {
           var element = document.createElement('iframe');
-          
-          element.src             = "https://theel0ja.github.io/yle-areena-embed/index.html?id=" + videoId;
-          element.width           = "640px";
-          element.height          = "360px";
-          element.style.maxWidth  = "100%";
-          element.frameBorder     = "0";
-          element.style.overflow  = "hidden";
+
+          element.src = "https://theel0ja.github.io/yle-areena-embed/index.html?id=" + videoId;
+          element.width = "640px";
+          element.height = "360px";
+          element.style.maxWidth = "100%"; // Mobile support
+          element.frameBorder = "0";
+          element.style.overflow = "hidden";
           element.allowFullscreen = "yes"; // It prints "", but "" in here doesn't work.
 
           return element;
@@ -108,7 +109,7 @@
         $("#showAfterConfigurationSubmit").show();
         // Empty #previewWindow and put element to it.
         $("#previewElement").text("");
-        $("#previewElement").append( element );
+        $("#previewElement").append(element);
 
         // Insert element as HTML code to #codeWindow
         $("#codeElement").text(element.outerHTML);
