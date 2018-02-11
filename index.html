@@ -63,17 +63,17 @@
     <!-- JS -->
     <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.slim.min.js"></script>
 
-    <script src="https://theel0ja.github.io/theel0ja-js/dist/index.js"></script>
+    <script src="https://unpkg.com/getparameterbyname/dist/bundle.min.js"></script>
     <script>
       $("#showAfterConfigurationSubmit").hide();
 
       // If hide_title query parameter is "yes", hide #siteTitle
-      if (theel0ja.getParameterByName("hide_title") == "yes") {
+      if (getParameterByName("hide_title") == "yes") {
         $("h1#siteTitle").hide();
       }
 
       // If pedanet_generator query parameter is "yes", hide #githubForkMeRibbon
-      if (theel0ja.getParameterByName("pedanet_generator") == "yes") {
+      if (getParameterByName("pedanet_generator") == "yes") {
         $("#githubForkMeRibbon").hide();
       }
     </script>
