@@ -118,7 +118,7 @@
           element.style.maxWidth = "100%"; // Mobile support
           element.frameBorder = "0";
           element.style.overflow = "hidden";
-          element.allowFullscreen = "yes"; // It prints "", but "" in here doesn't work.
+          element.allowFullscreen = true; // It prints "", but "" in here doesn't work.
 
           return element;
         }
@@ -136,7 +136,11 @@
 
         // Insert element as HTML code to #codeWindow
         $("#codeElement").text(element.outerHTML);
-        hljs.initHighlightingOnLoad();
+
+        
+        $('#codeElement').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
       });
     </script>
   </body>
